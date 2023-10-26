@@ -25,6 +25,7 @@ Dry::Core::Deprecations.set_logger!(Rails.root.join('log/deprecations.log'))
 RSpec.configure do |config|
   config.disable_monkey_patching!
   config.example_status_persistence_file_path = "tmp/examples.txt"
+  config.full_backtrace = true if ENV['RSPEC_FULL_BACKTRACE']
 
   config.before(:suite) do
     conn = rom.gateways[:default].connection

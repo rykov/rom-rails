@@ -6,7 +6,7 @@ RSpec.describe 'ROM logger' do
       'adapters and in case of missing rails-log-subscriber support we ' \
       'will set logger to Rails.logger'
     rom.gateways.each_value do |gateway|
-      expect(gateway.logger).to be(Rails.logger)
+      expect(gateway.logger).to eq(Rails.logger)
     end
   end
 end

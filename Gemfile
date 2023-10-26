@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gemspec
 
-RAILS_VERSION = ENV.fetch("RAILS_VERSION", '7.0.4').freeze
+RAILS_VERSION = ENV.fetch("RAILS_VERSION", '7.1.0').freeze
 
 %w(railties actionview actionpack activerecord).each do |name|
   gem name, "~> #{RAILS_VERSION}"
@@ -20,7 +20,7 @@ if ENV["USE_ROM_MASTER"].eql?("true")
 
   gem 'rom-sql', github: 'rom-rb/rom-sql', branch: 'master'
 else
-  gem "rom"
+  gem "rom", github: 'rykov/rom', branch: 'fix-5.3-rails71'
   gem "rom-sql"
 
   gem "sequel", "5.31.0"
@@ -31,8 +31,8 @@ platforms :jruby do
 end
 
 group :test do
-  gem 'debug'
   gem 'capybara'
+  gem 'debug', platforms: [:mri]
   gem 'codeclimate-test-reporter', require: nil
   gem 'database_cleaner', "~> 1.8.1"
   gem 'generator_spec'

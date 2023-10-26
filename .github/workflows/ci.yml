@@ -24,18 +24,20 @@ jobs:
       fail-fast: false
       matrix:
         ruby:
+          - '3.2'
+          - '3.1'
+          - '3.0'
           - '2.7'
-          - '2.6'
-          - '2.5'
-          - '2.4'
-          - 'jruby-9.3'
+          - 'jruby-9.4'
         rails:
+          - "7.1.0"
+          - "7.0.0"
           - "6.1.0"
-          - "6.0.0"
-          - "5.2.0"
-          - "5.1.0"
-          - "5.0.0"
-          - "4.2.0"
+#          - "6.0.0"
+#          - "5.2.0"
+#          - "5.1.0"
+#          - "5.0.0"
+#          - "4.2.0"
         exclude:
           - ruby: "2.4"
             rails: "6.0.0"
@@ -43,8 +45,21 @@ jobs:
             rails: "6.1.0"
           - ruby: "2.7"
             rails: "4.2.0"
+          - ruby: "2.4"
+            rails: "7.0.0"
+          - ruby: "2.5"
+            rails: "7.0.0"
+          - ruby: "2.6"
+            rails: "7.0.0"
+          - ruby: "2.4"
+            rails: "7.1.0"
+          - ruby: "2.5"
+            rails: "7.1.0"
+          - ruby: "2.6"
+            rails: "7.1.0"
     env:
       APT_DEPS: libsqlite3-dev
+      RSPEC_FULL_BACKTRACE: true
       RAILS_VERSION: "${{matrix.rails}}"
       RAILS_ENV: test
 
@@ -57,6 +72,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: "${{matrix.ruby}}"
+          rubygems: latest
       - name: Install latest bundler
         run: |
           gem install bundler --no-document
