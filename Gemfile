@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gemspec
 
-RAILS_VERSION = ENV.fetch("RAILS_VERSION", '7.0.4').freeze
+RAILS_VERSION = ENV.fetch("RAILS_VERSION", '8.1.0').freeze
 
 %w(railties actionview actionpack activerecord).each do |name|
   gem name, "~> #{RAILS_VERSION}"
@@ -38,4 +38,7 @@ group :test do
   gem 'generator_spec'
   gem 'rack-test'
   gem 'rspec-rails', '~> 3.1'
+  gem 'mutex_m'
+  gem 'base64'
+  gem 'drb'
 end
